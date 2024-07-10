@@ -5,32 +5,33 @@
 
 
 
-input[type="checkbox"] {
-    /* Remove default appearance */
+/*input[type="checkbox"] {
+    /~ Remove default appearance ~/
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    /* Create custom checkbox */
+    /~ Create custom checkbox ~/
     width:16px;
     height: 16px;
-    background-color: #d5d5f5;
+    /~ background-color: #46e596; ~/
     border-radius: 9999px;
-    /* Fully rounded */
-    border: 2px solid #4f46e5;
+    /~ border-color: #17ac03; ~/
+    /~ Fully rounded ~/
+    border-width: 2px;
     transition: background-color 0.2s, border-color 0.2s;
     cursor: pointer;
 }
 
 input[type="checkbox"]:checked {
-    background-color: #46e596;
-    /* Change color when checked */
-    border-color: #17ac03;
+    /~ background-color: #fc3939; ~/
+    /~ Change color when checked ~/
+    /~ border-color: #ff0000; ~/
 }
 
 input[type="checkbox"]:focus {
     outline: none;
-    /* box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5); */
-}
+    /~ box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5); ~/
+}*/
 
 .no-scrollbar::-webkit-scrollbar {
     display: none !important;

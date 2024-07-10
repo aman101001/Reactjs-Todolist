@@ -1,23 +1,40 @@
 import { useState } from "react"
 import DateHeading from "./DateHeading"
 import TodoList from "./TodoList"
+import { TodoTask } from './Todo.model'
 
 function Todo() {
     const [todo, setTodo] = useState<string>('');
-    const [todoList, setTodoList] = useState<string[]>([]);
+    const [todoList, setTodoList] = useState<TodoTask[]>([]);
 
     const addTodo = () => {
         if (todo != '') {
-            setTodoList([todo, ...todoList]);
+            const todoObj = {
+                task: todo,
+                completed: false
+            }
+            setTodoList([todoObj, ...todoList]);
             setTodo('');
         }
     }
 
     const deleteTodo = (index: number) => {
-        const newTodoList = todoList.filter((_todo: string, todoIndex: number) => {
+        const newTodoList = todoList.filter((_todo: TodoTask, todoIndex: number) => {
             return todoIndex != index;
         })
         setTodoList(newTodoList);
+    }
+
+    const editTodo = (e: any, index: number) => {
+        const newList = [...todoList];
+        newList[index] = { ...todoList[index], task: e.target.value };
+        setTodoList(newList)
+    }
+
+    const handleComplete = (index: number) => {
+        const newList = [...todoList];
+        newList[index]['completed'] = !newList[index]['completed'];
+        setTodoList(newList);
     }
 
     return (
@@ -27,7 +44,7 @@ function Todo() {
             <p className="text-xs uppercase text-[#d5d5f5] tracking-wider mt-8 mb-2 px-8">Today's List</p>
 
             <div className="flex-1  overflow-auto no-scrollbar">
-                <TodoList todoList={todoList} deleteTodo={deleteTodo}></TodoList>
+                <TodoList todoList={todoList} deleteTodo={deleteTodo} editTodo={editTodo} handleComplete={handleComplete}></TodoList>
             </div>
             <div className="absolute bottom-6 ps-8 pe-4 w-full flex justify-between items-center h-14">
                 <div className="flex-1 h-full  items-center me-4">
